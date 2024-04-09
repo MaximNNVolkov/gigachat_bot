@@ -16,7 +16,6 @@ class ChatActionMiddleware(BaseMiddleware):
 
         # Если такого флага на хэндлере нет
         if not long_operation_type:
-            print('обычная операция', long_operation_type, event)
             return await handler(event, data)
 
         # Если флаг есть
@@ -25,5 +24,4 @@ class ChatActionMiddleware(BaseMiddleware):
                 action=long_operation_type,
                 chat_id=event.chat.id
         ):
-            print('длинная операция', long_operation_type, event)
             return await handler(event, data)
